@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #ffdde1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            flex-direction: column;
+        }
+        .message {
+            font-size: 24px;
+            color: #d10068;
+            font-weight: bold;
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .heart {
+            position: absolute;
+            color: red;
+            font-size: 20px;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            from { transform: translateY(-100vh); opacity: 1; }
+            to { transform: translateY(100vh); opacity: 0; }
+        }
+        .extra-text {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #b3005e;
+            text-align: center;
+            max-width: 80%;
+        }
+        .controls {
+            margin-top: 20px;
+        }
+        button {
+            background-color: #d10068;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #b3005e;
+        }
+    </style>
+</head>
+<body>
+    <div class="message" id="message">Happy Valentine, Sayang! ❤️</div>
+    <p class="extra-text">You are my heart’s home, my joy, and my peace. Every moment with you feels like a beautiful dream come true. I love you more than words could ever say 💕</p>
+    <marquee style="position: fixed; bottom: 10px; width: 100%; color: red; font-size: 18px;">
+        Semoga bahagia selalu terpancar setiap harinya ya sayang ❤️💖
+    </marquee>
+    
+    <audio id="valentine-song" loop>
+        <source src="lagu.mp3" type="audio/mpeg">
+        Browser kamu tidak mendukung audio.
+    </audio>
+    
+    <div class="controls">
+        <button onclick="playMusic()">Play 🎵</button>
+        <button onclick="pauseMusic()">Pause ⏸</button>
+    </div>
+    
+    <script>
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            document.body.appendChild(heart);
+            
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 2 + 3 + "s";
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+        
+        setInterval(createHeart, 300);
+        
+        setTimeout(() => {
+            document.getElementById('message').style.opacity = 1;
+        }, 2000);
+        
+        const audio = document.getElementById("valentine-song");
+
+        function playMusic() {
+            audio.play();
+        }
+
+        function pauseMusic() {
+            audio.pause();
+        }
+    </script>
+</body>
+</html>
